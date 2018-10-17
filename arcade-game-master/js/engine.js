@@ -61,6 +61,16 @@ var Engine = (function(global) {
 
         closeBtn.addEventListener('click', () => modal.style.display = "none");
 
+        const resetGame = document.querySelector('#resetGame');
+
+        resetGame.addEventListener('click', function() {
+          modal.style.display = "none";
+          player.reset();
+          player.complete = false;
+          win.requestAnimationFrame(main);
+        });
+
+
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
@@ -68,7 +78,7 @@ var Engine = (function(global) {
          if (player.complete === true) {
            console.log('GAME OVER');
            win.cancelAnimationFrame(id);
-           closeBtn.modal.style.display = "block";
+           modal.style.display = "block";
          } else {
            id = win.requestAnimationFrame(main);
          }
